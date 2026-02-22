@@ -1,0 +1,2444 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HGRAND AI COACH — IA para preparadores físicos | AI for Physique Coaches</title>
+  <meta name="description" content="HGRAND AI COACH: La IA para preparadores físicos. Analiza, predice y escala tu coaching sin perder el toque humano. / The AI built for physique coaches to analyze, predict, and scale." />
+  <link rel="canonical" href="https://example.com/hgrand-ai-coach" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="HGRAND AI COACH — Domina el juego. No la administración." />
+  <meta property="og:description" content="The first AI built by and for physique coaches. Analyze, predict, and scale your coaching without losing the human touch." />
+  <meta property="og:url" content="https://example.com/hgrand-ai-coach" />
+  <meta property="og:image" content="https://example.com/og-image-placeholder.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HGRAND AI COACH" />
+  <meta name="twitter:description" content="IA para preparadores físicos / AI for physique coaches." />
+  <meta name="twitter:image" content="https://example.com/og-image-placeholder.jpg" />
+
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="favicon-placeholder.ico" />
+
+  <!-- Fonts (allowed CDN) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons (choose ONE): Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root{
+      --red:#E53935;
+      --bg:#0A0A0A;
+      --panel:#111113;
+      --panel2:#1A1A1A;
+      --text:#F5F5F5;
+      --muted:#B8BDC7;
+      --muted2:#6B7280;
+      --border: rgba(245,245,245,.10);
+      --border2: rgba(245,245,245,.16);
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --radius: 16px;
+      --radius2: 22px;
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --t: 300ms var(--ease);
+      --max: 1160px;
+      --hfont: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+      --bfont: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    [data-theme="light"]{
+      --bg:#F5F5F5;
+      --panel:#FFFFFF;
+      --panel2:#EEF0F3;
+      --text:#0A0A0A;
+      --muted:#2A2F3A;
+      --muted2:#4B5563;
+      --border: rgba(10,10,10,.10);
+      --border2: rgba(10,10,10,.16);
+      --shadow: 0 20px 60px rgba(10,10,10,.14);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--bfont);
+      color:var(--text);
+      background: var(--bg);
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+    .container{max-width:var(--max);margin:0 auto;padding:0 20px}
+    .section{padding:86px 0; position:relative}
+    .grid{display:grid; gap:18px}
+
+    /* Top nav */
+    .nav{
+      position:sticky; top:0; z-index:999;
+      background: linear-gradient(to bottom, rgba(10,10,10,.85), rgba(10,10,10,.55));
+      border-bottom: 1px solid rgba(245,245,245,.06);
+      backdrop-filter: blur(14px);
+    }
+    [data-theme="light"] .nav{
+      background: linear-gradient(to bottom, rgba(245,245,245,.90), rgba(245,245,245,.70));
+      border-bottom:1px solid rgba(10,10,10,.06);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; min-width:180px;
+      outline:none;
+    }
+    .brand:focus-visible{outline:2px solid rgba(229,57,53,.55); outline-offset:3px; border-radius:12px}
+    .brand .mark{
+      width:36px; height:36px; border-radius:10px;
+      background: radial-gradient(circle at 30% 30%, rgba(229,57,53,.85), rgba(229,57,53,.20) 55%, rgba(255,255,255,0) 70%);
+      border:1px solid rgba(229,57,53,.28);
+      box-shadow: 0 10px 28px rgba(229,57,53,.18);
+    }
+    .brand .name{
+      font-family:var(--hfont);
+      letter-spacing:.06em;
+      font-size:20px;
+      line-height:1;
+      margin-top:2px;
+    }
+    .brand .name span{color:var(--red)}
+    .nav-links{
+      display:flex; gap:18px; align-items:center;
+    }
+    .nav-links a{
+      color:var(--muted);
+      padding:10px 10px;
+      border-radius:10px;
+      transition: background var(--t), color var(--t);
+      outline:none;
+    }
+    .nav-links a:hover{background: rgba(255,255,255,.05); color:var(--text)}
+    [data-theme="light"] .nav-links a:hover{background: rgba(10,10,10,.05)}
+    .nav-links a:focus-visible{outline:2px solid rgba(229,57,53,.55); outline-offset:2px}
+
+    .nav-actions{display:flex; align-items:center; gap:10px}
+    .icon-btn{
+      width:40px; height:40px; border-radius:12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      display:grid; place-items:center;
+      cursor:pointer;
+      transition: transform var(--t), background var(--t), border-color var(--t);
+      outline:none;
+    }
+    .icon-btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: var(--border2)}
+    .icon-btn:focus-visible{outline:2px solid rgba(229,57,53,.55); outline-offset:2px}
+    [data-theme="light"] .icon-btn{background: rgba(10,10,10,.03)}
+    [data-theme="light"] .icon-btn:hover{background: rgba(10,10,10,.06)}
+
+    .lang-toggle{
+      display:flex; align-items:center; gap:4px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:4px;
+      background: rgba(255,255,255,.03);
+    }
+    .lang-toggle button{
+      border:0; background:transparent; color:var(--muted);
+      padding:8px 10px; border-radius:10px; cursor:pointer;
+      transition: background var(--t), color var(--t);
+      outline:none;
+    }
+    .lang-toggle button:focus-visible{outline:2px solid rgba(229,57,53,.55); outline-offset:2px}
+    .lang-toggle button[aria-pressed="true"]{
+      background: rgba(229,57,53,.18);
+      color: var(--text);
+    }
+
+    .hamburger{display:none}
+
+    /* Hero */
+    .hero{
+      min-height: calc(100vh - 70px);
+      display:flex; align-items:center;
+      padding: 56px 0 40px;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(900px 700px at 15% 20%, rgba(229,57,53,.18), rgba(229,57,53,0) 60%),
+        radial-gradient(700px 560px at 80% 15%, rgba(229,57,53,.10), rgba(229,57,53,0) 55%),
+        linear-gradient(to bottom, rgba(0,0,0,.0), rgba(0,0,0,.55));
+      pointer-events:none;
+    }
+    [data-theme="light"] .hero::before{
+      background:
+        radial-gradient(900px 700px at 15% 20%, rgba(229,57,53,.12), rgba(229,57,53,0) 60%),
+        radial-gradient(700px 560px at 80% 15%, rgba(229,57,53,.06), rgba(229,57,53,0) 55%),
+        linear-gradient(to bottom, rgba(245,245,245,0), rgba(245,245,245,.65));
+    }
+    .grid-3d{
+      position:absolute; inset:-30% -20% -20% -20%;
+      transform: perspective(900px) rotateX(58deg) translateY(10%);
+      transform-origin: center;
+      background-image:
+        linear-gradient(to right, rgba(229,57,53,.10) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(229,57,53,.10) 1px, transparent 1px);
+      background-size: 68px 68px;
+      opacity:.18;
+      animation: breathe 7.5s var(--ease) infinite alternate;
+      filter: blur(.2px);
+      pointer-events:none;
+    }
+    .grid-3d::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(circle at 50% 50%, rgba(229,57,53,.12), rgba(229,57,53,0) 62%);
+      mix-blend-mode: screen;
+      opacity:.55;
+    }
+    @keyframes breathe{
+      from{transform: perspective(900px) rotateX(58deg) translateY(11%)}
+      to{transform: perspective(900px) rotateX(58deg) translateY(7%)}
+    }
+    .matrix{
+      position:absolute; inset:0;
+      pointer-events:none;
+      opacity:.22;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(229,57,53,.08), rgba(229,57,53,0) 45%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 1px, transparent 1px 22px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 1px, transparent 1px 26px);
+      mask-image: radial-gradient(circle at 45% 40%, black 0 55%, transparent 72%);
+    }
+    [data-theme="light"] .matrix{
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(229,57,53,.06), rgba(229,57,53,0) 45%),
+        repeating-linear-gradient(90deg, rgba(10,10,10,.04) 0 1px, transparent 1px 22px),
+        repeating-linear-gradient(0deg, rgba(10,10,10,.04) 0 1px, transparent 1px 26px);
+      opacity:.30;
+    }
+
+    .hero-wrap{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 26px;
+      align-items:center;
+      z-index:2;
+    }
+    .hero-left{padding: 10px 0}
+    .hero-logo{
+      width: 200px;
+      margin-bottom: 18px;
+      filter: drop-shadow(0 22px 70px rgba(229,57,53,.18));
+    }
+    .hero h1{
+      margin:0;
+      font-family: var(--hfont);
+      letter-spacing:.04em;
+      font-size: clamp(40px, 5.2vw, 74px);
+      line-height: .92;
+      text-transform:uppercase;
+    }
+    .hero h1 .accent{color:var(--red)}
+    .sub{
+      margin: 14px 0 0;
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 58ch;
+      line-height:1.55;
+    }
+    .dual{margin-top: 12px; display:grid; gap:8px}
+    .dual .line{display:flex; gap:10px; align-items:flex-start}
+    .badge{
+      min-width:38px;
+      font-family: var(--hfont);
+      letter-spacing:.12em;
+      font-size: 14px;
+      padding: 6px 8px;
+      border-radius: 10px;
+      border:1px solid var(--border);
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+    }
+
+    .cta-row{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top: 20px; align-items:center;
+    }
+    .btn{
+      position:relative;
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      height: 46px;
+      padding: 0 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      cursor:pointer;
+      transition: transform var(--t), background var(--t), border-color var(--t), box-shadow var(--t);
+      outline:none;
+      user-select:none;
+      overflow:hidden;
+    }
+    .btn:focus-visible{outline: 2px solid rgba(229,57,53,.55); outline-offset:2px}
+    .btn:hover{transform: translateY(-1px); border-color: var(--border2)}
+    .btn.primary{
+      background: var(--red);
+      border-color: rgba(229,57,53,.55);
+      box-shadow: 0 20px 70px rgba(229,57,53,.18);
+      color:#fff;
+    }
+    .btn.primary:hover{
+      background: rgba(10,10,10,.95);
+      border-color: rgba(229,57,53,.85);
+      box-shadow: 0 30px 90px rgba(229,57,53,.22);
+    }
+    .btn.outline{
+      background: transparent;
+      border-color: rgba(245,245,245,.40);
+      color: var(--text);
+    }
+    [data-theme="light"] .btn.outline{border-color: rgba(10,10,10,.35)}
+    .btn.outline:hover{
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    .stats{
+      margin-top: 18px;
+      display:flex; flex-wrap:wrap;
+      gap: 14px;
+      color: var(--muted2);
+      font-size: 12px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+    }
+    .stat{
+      border:1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,.02);
+      display:flex; gap:10px; align-items:baseline;
+    }
+    .stat strong{
+      font-family: var(--hfont);
+      font-size: 22px;
+      letter-spacing:.06em;
+      color: var(--text);
+      line-height:1;
+    }
+
+    /* Mockups */
+    .mockups{position:relative; min-height: 420px}
+    .device{
+      position:absolute;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(245,245,245,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    [data-theme="light"] .device{border-color: rgba(10,10,10,.10)}
+    .device::before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(500px 300px at 20% 10%, rgba(229,57,53,.22), rgba(229,57,53,0) 60%);
+      opacity:.6;
+      pointer-events:none;
+    }
+    .device .topbar{
+      height: 42px;
+      display:flex; align-items:center; gap:8px;
+      padding: 0 14px;
+      border-bottom: 1px solid rgba(245,245,245,.10);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    [data-theme="light"] .device .topbar{border-bottom-color: rgba(10,10,10,.08)}
+    .dot{width:10px;height:10px;border-radius:999px;background: rgba(245,245,245,.18)}
+    [data-theme="light"] .dot{background: rgba(10,10,10,.16)}
+    .screen{padding: 14px}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .tile-grid{display:grid; gap:10px}
+    .tile{
+      border:1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0,0,0,.12);
+    }
+    [data-theme="light"] .tile{background: rgba(10,10,10,.03)}
+    .tile .row{display:flex; justify-content:space-between; gap:12px; align-items:center}
+    .tag{
+      font-size: 11px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border:1px solid var(--border);
+      color: var(--muted);
+      background: rgba(255,255,255,.02);
+      text-transform: uppercase;
+      letter-spacing:.08em;
+    }
+    .status{width:10px;height:10px;border-radius:999px}
+    .g{background: rgba(16,185,129,.9)}
+    .y{background: rgba(245,158,11,.9)}
+    .r{background: rgba(239,68,68,.9)}
+    .spark{
+      margin-top:10px;
+      height: 40px;
+      border-radius: 12px;
+      border:1px dashed rgba(245,245,245,.12);
+      background: linear-gradient(90deg, rgba(229,57,53,.10), rgba(255,255,255,0));
+      position:relative;
+      overflow:hidden;
+    }
+    [data-theme="light"] .spark{border-color: rgba(10,10,10,.10)}
+    .spark svg{position:absolute; inset:6px; opacity:.9}
+    .glow{
+      position:absolute; inset:auto -20% -35% -20%;
+      height: 65%;
+      background: radial-gradient(circle at 50% 40%, rgba(229,57,53,.35), rgba(229,57,53,0) 60%);
+      filter: blur(14px);
+      pointer-events:none;
+      opacity:.55;
+    }
+    .laptop{width:min(520px, 100%); height: 360px; right: 0; top: 28px; transform: rotate(-2deg)}
+    .phone{width: 220px; height: 360px; right: 290px; top: 86px; transform: rotate(6deg)}
+    .device .screen .mini-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .mini-card{
+      border:1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      background: rgba(0,0,0,.12);
+      min-height: 86px;
+    }
+    [data-theme="light"] .mini-card{background: rgba(10,10,10,.03)}
+    .mini-card h4{margin:0; font-size:12px; color: var(--muted)}
+    .mini-card p{margin:6px 0 0; font-size:12px; color: var(--text)}
+    .kpi{margin-top:6px; display:flex; gap:8px; flex-wrap:wrap}
+    .kpi span{font-size:11px; color: var(--muted2)}
+
+    /* Section headings */
+    .kicker{
+      font-family: var(--hfont);
+      letter-spacing:.14em;
+      color: var(--muted2);
+      text-transform:uppercase;
+      font-size: 14px;
+      margin:0 0 10px;
+    }
+    .h2{
+      font-family: var(--hfont);
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      font-size: clamp(34px, 4vw, 52px);
+      margin:0;
+      line-height:.95;
+    }
+    .lead{
+      color: var(--muted);
+      margin: 12px 0 0;
+      max-width: 70ch;
+      line-height: 1.6;
+    }
+
+    /* Problem section */
+    .problem{background: linear-gradient(180deg, var(--bg), var(--panel2))}
+    .problem-wrap{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items:center;
+    }
+    .card{
+      border:1px solid var(--border);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+    }
+    [data-theme="light"] .card{background: rgba(10,10,10,.03)}
+    .chaos{height: 320px; position:relative; overflow:hidden}
+    .chaos svg{position:absolute; inset:0; width:100%; height:100%}
+    .wipe{
+      position:absolute; top:0; left:-30%;
+      width:30%; height:100%;
+      background: linear-gradient(90deg, transparent, rgba(229,57,53,.18), transparent);
+      filter: blur(10px);
+      animation: wipe 2.8s var(--ease) infinite;
+      opacity:.7;
+    }
+    @keyframes wipe{
+      0%{left:-35%}
+      55%{left:110%}
+      100%{left:110%}
+    }
+
+    /* Features */
+    .features-grid{grid-template-columns: repeat(2, minmax(0,1fr))}
+    .feature{
+      padding: 18px;
+      border-radius: var(--radius2);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      transition: transform var(--t), border-color var(--t), box-shadow var(--t);
+      position:relative;
+      overflow:hidden;
+    }
+    .feature:hover{
+      transform: translateY(-2px) scale(1.02);
+      border-color: rgba(229,57,53,.55);
+      box-shadow: 0 20px 70px rgba(229,57,53,.12);
+    }
+    .feature .top{display:flex; gap:12px; align-items:flex-start; margin-bottom: 10px}
+    .icon{
+      width:44px; height:44px; border-radius:14px;
+      border:1px solid rgba(229,57,53,.28);
+      background: rgba(229,57,53,.10);
+      display:grid; place-items:center;
+      color: var(--red);
+      flex: 0 0 auto;
+    }
+    .feature h3{
+      margin:0;
+      font-family: var(--hfont);
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size: 22px;
+      line-height:1;
+    }
+    .feature p{margin: 8px 0 0; color: var(--muted); line-height: 1.55}
+
+    /* How it works */
+    .how{background: var(--panel2)}
+    .timeline{
+      margin-top: 18px;
+      border-radius: var(--radius2);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .tl-line{
+      position:absolute;
+      left: 18px; right: 18px;
+      top: 46px;
+      height: 2px;
+      background: rgba(229,57,53,.12);
+    }
+    .tl-line .draw{
+      width:0%;
+      height:100%;
+      background: rgba(229,57,53,.85);
+      box-shadow: 0 0 24px rgba(229,57,53,.25);
+      transition: width 1100ms var(--ease);
+    }
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .step{
+      border:1px solid var(--border);
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(0,0,0,.14);
+      min-height: 150px;
+      position:relative;
+    }
+    [data-theme="light"] .step{background: rgba(10,10,10,.03)}
+    .step .num{
+      width: 30px; height: 30px; border-radius: 10px;
+      background: rgba(229,57,53,.14);
+      border:1px solid rgba(229,57,53,.35);
+      display:grid; place-items:center;
+      font-family: var(--hfont);
+      letter-spacing:.08em;
+    }
+    .step h4{
+      margin: 10px 0 6px;
+      font-family: var(--hfont);
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size: 18px;
+      line-height:1;
+    }
+    .step p{margin:0; color: var(--muted); font-size: 13px; line-height:1.55}
+
+    /* Dashboard */
+    .dashboard{
+      border-radius: var(--radius2);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .dash-head{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(245,245,245,.08);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    [data-theme="light"] .dash-head{border-bottom-color: rgba(10,10,10,.08)}
+    .filters{display:flex; gap:8px; flex-wrap:wrap}
+    .filter{
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding: 8px 10px;
+      background: rgba(255,255,255,.02);
+      cursor:pointer;
+      transition: border-color var(--t), background var(--t);
+      user-select:none;
+      outline:none;
+    }
+    .filter:focus-visible{outline:2px solid rgba(229,57,53,.55); outline-offset:2px}
+    .filter.active{
+      border-color: rgba(229,57,53,.55);
+      background: rgba(229,57,53,.12);
+      color: var(--text);
+    }
+    .dash-body{
+      display:grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 420px;
+    }
+    .sidebar{
+      border-right: 1px solid rgba(245,245,245,.08);
+      padding: 14px;
+      background: rgba(0,0,0,.18);
+    }
+    [data-theme="light"] .sidebar{background: rgba(10,10,10,.02); border-right-color: rgba(10,10,10,.08)}
+    .ath{
+      display:flex; align-items:center; gap:10px;
+      padding: 10px 10px;
+      border-radius: 14px;
+      border:1px solid transparent;
+      color: var(--muted);
+      transition: background var(--t), border-color var(--t), color var(--t);
+      outline:none;
+    }
+    .ath:focus-visible{outline:2px solid rgba(229,57,53,.55); outline-offset:2px}
+    .ath:hover{
+      background: rgba(255,255,255,.04);
+      border-color: var(--border);
+      color: var(--text);
+    }
+    [data-theme="light"] .ath:hover{background: rgba(10,10,10,.04)}
+    .avatar{
+      width: 32px; height:32px; border-radius:12px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(229,57,53,.25), rgba(255,255,255,.02));
+    }
+    .ath .meta{display:flex; flex-direction:column; gap:2px}
+    .ath .meta strong{font-size:12px; color: var(--text)}
+    .ath .meta span{font-size:11px; color: var(--muted2)}
+    .main{padding: 14px}
+    .ath-grid{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px}
+    .ath-card{
+      border:1px solid var(--border);
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(0,0,0,.14);
+      cursor:pointer;
+      transition: transform var(--t), border-color var(--t), box-shadow var(--t);
+      position:relative;
+      overflow:hidden;
+      outline:none;
+    }
+    [data-theme="light"] .ath-card{background: rgba(10,10,10,.03)}
+    .ath-card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(229,57,53,.40);
+      box-shadow: 0 20px 70px rgba(229,57,53,.10);
+    }
+    .ath-card:focus-visible{outline:2px solid rgba(229,57,53,.55); outline-offset:2px}
+    .ath-card .row{display:flex; justify-content:space-between; align-items:center; gap:12px}
+    .ath-card h5{
+      margin:0;
+      font-family: var(--hfont);
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size: 18px;
+      line-height:1;
+    }
+    .ath-card p{margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height:1.45}
+    .details{
+      margin-top: 10px;
+      max-height: 0px;
+      opacity: 0;
+      overflow:hidden;
+      transition: max-height 450ms var(--ease), opacity 450ms var(--ease);
+      border-top: 1px dashed rgba(245,245,245,.10);
+      padding-top: 0;
+    }
+    [data-theme="light"] .details{border-top-color: rgba(10,10,10,.10)}
+    .ath-card.expanded .details{
+      max-height: 140px;
+      opacity: 1;
+      padding-top: 10px;
+    }
+    .details .spark{height: 46px}
+    .sev{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid var(--border);
+      font-size: 11px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color: var(--muted);
+      background: rgba(255,255,255,.02);
+    }
+
+    /* Testimonials */
+    .testimonials{background: linear-gradient(135deg, var(--bg), var(--panel2))}
+    .t-grid{grid-template-columns: repeat(3, minmax(0,1fr)); margin-top: 18px}
+    .t-card{
+      padding: 18px;
+      border-radius: var(--radius2);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      transition: transform var(--t), border-color var(--t);
+    }
+    .t-card:hover{transform: translateY(-2px); border-color: rgba(229,57,53,.40)}
+    .t-top{display:flex; gap:12px; align-items:center}
+    .photo{
+      width: 46px; height:46px; border-radius: 999px;
+      border:1px solid var(--border);
+      background: radial-gradient(circle at 30% 30%, rgba(229,57,53,.25), rgba(255,255,255,.02) 60%);
+    }
+    .t-name{display:flex; flex-direction:column}
+    .t-name strong{font-size: 14px}
+    .t-name span{font-size: 12px; color: var(--muted2)}
+    .quote{margin: 12px 0 0; color: var(--muted); line-height: 1.6}
+
+    /* Pricing */
+    .pricing-top{
+      margin-top: 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    }
+    .toggle{
+      display:inline-flex;
+      border:1px solid var(--border);
+      border-radius: 14px;
+      padding: 4px;
+      background: rgba(255,255,255,.03);
+      gap:4px;
+    }
+    .toggle button{
+      border:0; background:transparent;
+      color: var(--muted);
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor:pointer;
+      transition: background var(--t), color var(--t);
+      display:flex; align-items:center; gap:8px;
+      outline:none;
+    }
+    .toggle button:focus-visible{outline:2px solid rgba(229,57,53,.55); outline-offset:2px}
+    .toggle button[aria-pressed="true"]{
+      background: rgba(229,57,53,.18);
+      color: var(--text);
+    }
+    .p-grid{grid-template-columns: repeat(3, minmax(0,1fr)); margin-top: 18px}
+    .p-card{
+      padding: 18px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      position:relative;
+      overflow:hidden;
+      transition: transform var(--t), border-color var(--t), box-shadow var(--t);
+    }
+    .p-card:hover{transform: translateY(-2px); border-color: rgba(229,57,53,.40)}
+    .p-card.pro{
+      border-color: rgba(229,57,53,.65);
+      box-shadow: 0 30px 90px rgba(229,57,53,.12);
+    }
+    .badge-pop{
+      position:absolute; top:14px; right:14px;
+      font-size: 11px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(229,57,53,.18);
+      border:1px solid rgba(229,57,53,.45);
+      color: var(--text);
+    }
+    .p-card h3{
+      margin:0;
+      font-family: var(--hfont);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size: 24px;
+      line-height:1;
+    }
+    .price{margin-top: 10px; font-family: var(--hfont); font-size: 44px; letter-spacing:.02em}
+    .per{font-size: 12px; color: var(--muted2); letter-spacing:.10em; text-transform:uppercase}
+    .fade{transition: opacity 240ms var(--ease)}
+    .fade.out{opacity:0}
+    .feat{
+      margin: 12px 0 0;
+      padding:0;
+      list-style:none;
+      color: var(--muted);
+      display:grid;
+      gap: 10px;
+    }
+    .feat li{display:flex; gap:10px; align-items:flex-start}
+    .feat i{color: var(--red); margin-top:1px}
+    .p-cta{margin-top: 14px; width:100%}
+
+    /* FAQ */
+    .faq{background: var(--panel2)}
+    .accordion{margin-top: 18px; display:grid; gap:10px}
+    details{
+      border:1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.02);
+      padding: 0;
+      overflow:hidden;
+    }
+    details summary{
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 14px 16px;
+      cursor:pointer;
+      user-select:none;
+      color: var(--text);
+      outline:none;
+    }
+    details summary:focus-visible{outline:2px solid rgba(229,57,53,.55); outline-offset:2px; border-radius:18px}
+    details summary::-webkit-details-marker{display:none}
+    .q{
+      font-family: var(--hfont);
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      font-size: 20px;
+    }
+    .chev{
+      width: 38px; height:38px; border-radius: 14px;
+      display:grid; place-items:center;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      transition: transform var(--t);
+      color: var(--muted);
+      flex:0 0 auto;
+    }
+    details[open] .chev{transform: rotate(45deg)}
+    .a{padding: 0 16px 14px; color: var(--muted); line-height: 1.6}
+
+    /* CTA */
+    .final-cta{
+      background: var(--red);
+      color: #fff;
+      overflow:hidden;
+    }
+    .pattern{
+      position:absolute; inset:-20%;
+      background-image: repeating-linear-gradient(135deg, rgba(10,10,10,.10) 0 1px, transparent 1px 16px);
+      opacity:.22;
+      animation: drift 9s linear infinite;
+      pointer-events:none;
+    }
+    @keyframes drift{
+      from{transform: translate3d(-2%, -2%, 0)}
+      to{transform: translate3d(2%, 2%, 0)}
+    }
+    .final-cta .h2{color:#fff}
+    .final-cta .lead{color: rgba(255,255,255,.86)}
+    .form{
+      margin-top: 16px;
+      display:flex; gap:10px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .form input{
+      flex: 1 1 280px;
+      height: 48px;
+      border-radius: 14px;
+      border: 1px solid rgba(10,10,10,.22);
+      background: rgba(255,255,255,.94);
+      padding: 0 14px;
+      outline:none;
+    }
+    .form input:focus{box-shadow: 0 0 0 4px rgba(10,10,10,.10)}
+    .btn.dark{
+      background: #0A0A0A;
+      border-color: rgba(10,10,10,.42);
+      color: #fff;
+    }
+    .btn.dark:hover{background: rgba(10,10,10,.88)}
+    .fine{margin-top: 10px; font-size: 12px; color: rgba(255,255,255,.86); line-height:1.5}
+    .msg{
+      margin-top: 10px;
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      display:none;
+      background: rgba(0,0,0,.25);
+      border:1px solid rgba(0,0,0,.22);
+    }
+
+    /* Footer */
+    footer{padding: 54px 0 28px; border-top:1px solid rgba(245,245,245,.06)}
+    [data-theme="light"] footer{border-top-color: rgba(10,10,10,.06)}
+    .foot-grid{
+      display:grid;
+      grid-template-columns: 1.25fr 1fr 1fr 1fr;
+      gap: 18px;
+    }
+    .foot h4{
+      margin:0 0 10px;
+      font-family: var(--hfont);
+      text-transform:uppercase;
+      letter-spacing:.10em;
+      font-size: 16px;
+    }
+    .foot a{
+      display:block;
+      padding: 8px 0;
+      color: var(--muted);
+      transition: color var(--t);
+      outline:none;
+    }
+    .foot a:hover{color: var(--text)}
+    .foot a:focus-visible{outline:2px solid rgba(229,57,53,.55); outline-offset:2px; border-radius:10px}
+    .social{display:flex; gap:10px; margin-top: 12px}
+    .social a{
+      width: 40px; height:40px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.02);
+      transition: transform var(--t), border-color var(--t);
+    }
+    .social a:hover{transform: translateY(-1px); border-color: rgba(229,57,53,.45)}
+    .social a:focus-visible{outline:2px solid rgba(229,57,53,.55); outline-offset:2px}
+    .bottom{
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(245,245,245,.06);
+      display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      color: var(--muted2);
+      font-size: 12px;
+    }
+    [data-theme="light"] .bottom{border-top-color: rgba(10,10,10,.06)}
+
+    /* Reveal */
+    .reveal{
+      opacity:0;
+      transform: translateY(20px);
+      transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+      will-change: opacity, transform;
+    }
+    .reveal.in{opacity:1; transform: translateY(0)}
+
+    /* Mobile nav */
+    @media (max-width: 900px){
+      .hero-wrap{grid-template-columns: 1fr; gap: 18px}
+      .mockups{min-height: 380px}
+      .phone{right: 0; top: 12px}
+      .laptop{top: 92px}
+      .problem-wrap{grid-template-columns: 1fr}
+      .steps{grid-template-columns: 1fr; gap:10px}
+      .tl-line{left: 36px; right:auto; top: 18px; bottom: 18px; width:2px; height:auto}
+      .tl-line .draw{width:100%; height:0%; transition: height 1100ms var(--ease)}
+      .steps{margin-top: 10px}
+      .step{padding-left: 46px}
+      .step .num{position:absolute; left: 10px; top: 12px}
+      .dash-body{grid-template-columns: 1fr}
+      .sidebar{border-right:0; border-bottom:1px solid rgba(245,245,245,.08)}
+      [data-theme="light"] .sidebar{border-bottom-color: rgba(10,10,10,.08)}
+      .ath-grid{grid-template-columns: 1fr}
+      .t-grid{grid-template-columns: 1fr}
+      .p-grid{grid-template-columns: 1fr}
+      .foot-grid{grid-template-columns: 1fr 1fr}
+      .nav-links{display:none}
+      .hamburger{display:inline-flex; width:40px; height:40px}
+      .mobile-drawer{
+        display:none;
+        position:fixed; inset:70px 14px auto 14px;
+        background: var(--panel);
+        border:1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 10px;
+        z-index:1000;
+      }
+      .mobile-drawer.open{display:block}
+      .mobile-drawer a{
+        display:flex; align-items:center; justify-content:space-between;
+        padding: 12px 12px;
+        border-radius: 14px;
+        color: var(--muted);
+        outline:none;
+      }
+      .mobile-drawer a:hover{background: rgba(255,255,255,.04); color: var(--text)}
+      .mobile-drawer a:focus-visible{outline:2px solid rgba(229,57,53,.55); outline-offset:2px}
+      [data-theme="light"] .mobile-drawer{background: #fff}
+      [data-theme="light"] .mobile-drawer a:hover{background: rgba(10,10,10,.04)}
+    }
+
+    /* Breakpoints explicitly requested */
+    @media (min-width: 1440px){
+      .section{padding: 96px 0}
+      .hero{padding: 64px 0 44px}
+      .container{max-width: 1240px}
+      .phone{right: 330px}
+    }
+    @media (min-width: 1024px) and (max-width: 1439px){
+      .container{max-width: 1100px}
+      .phone{right: 270px}
+    }
+    @media (min-width: 768px) and (max-width: 1023px){
+      .container{max-width: 920px}
+      .features-grid{grid-template-columns: 1fr}
+      .steps{grid-template-columns: repeat(2, minmax(0,1fr))}
+      .ath-grid{grid-template-columns: repeat(2, minmax(0,1fr))}
+      .t-grid{grid-template-columns: 1fr}
+      .p-grid{grid-template-columns: 1fr}
+    }
+    @media (max-width: 767px){
+      .container{padding: 0 16px}
+      .features-grid{grid-template-columns: 1fr}
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *{animation:none !important; transition:none !important}
+      .reveal{opacity:1; transform:none}
+      .grid-3d{transform:none}
+      .matrix{opacity:.1}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav" role="banner">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="HGRAND AI COACH Home">
+          <div class="mark" aria-hidden="true"></div>
+          <div class="name"><span>H</span>GRAND</div>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#features" data-i18n="nav.features">Características</a>
+          <a href="#problem" data-i18n="nav.about">Nosotros</a>
+          <a href="#pricing" data-i18n="nav.pricing">Precios</a>
+          <a href="#faq" data-i18n="nav.faq">FAQ</a>
+          <a href="#contact" data-i18n="nav.contact">Contacto</a>
+          <a href="#login" data-i18n="nav.login">Iniciar sesión</a>
+        </nav>
+
+        <div class="nav-actions">
+          <div class="lang-toggle" aria-label="Language toggle">
+            <button type="button" class="lang" data-lang="es" aria-pressed="true">ES</button>
+            <button type="button" class="lang" data-lang="en" aria-pressed="false">EN</button>
+          </div>
+          <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme" title="Theme">
+            <i data-lucide="sun-moon" aria-hidden="true"></i>
+          </button>
+          <button class="icon-btn hamburger" id="menuBtn" type="button" aria-label="Open menu" title="Menu">
+            <i data-lucide="menu" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="drawer" aria-label="Mobile menu">
+      <a href="#features" data-close-drawer><span data-i18n="nav.features">Características</span><i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <a href="#problem" data-close-drawer><span data-i18n="nav.about">Nosotros</span><i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <a href="#pricing" data-close-drawer><span data-i18n="nav.pricing">Precios</span><i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <a href="#faq" data-close-drawer><span data-i18n="nav.faq">FAQ</span><i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <a href="#contact" data-close-drawer><span data-i18n="nav.contact">Contacto</span><i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      <a href="#login" data-close-drawer><span data-i18n="nav.login">Iniciar sesión</span><i data-lucide="arrow-right" aria-hidden="true"></i></a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- 1) HERO -->
+    <section class="section hero" aria-label="Hero">
+      <div class="grid-3d" aria-hidden="true"></div>
+      <div class="matrix" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero-wrap">
+          <div class="hero-left reveal">
+            <!-- REEMPLAZAR LOGO AQUÍ -->
+            <svg class="hero-logo" viewBox="0 0 760 220" role="img" aria-label="HGRAND AI COACH logo placeholder">
+              <defs>
+                <linearGradient id="lg" x1="0" x2="1">
+                  <stop offset="0" stop-color="#E53935" stop-opacity="0.95"/>
+                  <stop offset="1" stop-color="#E53935" stop-opacity="0.30"/>
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="760" height="220" rx="26" fill="rgba(255,255,255,0.03)" stroke="rgba(245,245,245,0.12)"/>
+              <text x="64" y="138" font-family="Bebas Neue, Impact, Arial Narrow, sans-serif" font-size="96" letter-spacing="6">
+                <tspan fill="#E53935">H</tspan><tspan fill="#F5F5F5">GRAND</tspan>
+              </text>
+              <!-- silhouette placeholder -->
+              <path d="M630 64c12 0 22 10 22 22s-10 22-22 22-22-10-22-22 10-22 22-22Zm-66 44c22-8 40-18 64-18 24 0 44 12 56 28 10 14 10 30 4 46l-20 0c4-10 2-18-4-26-8-10-20-16-36-16-14 0-26 4-38 10l-10-24Z"
+                    fill="url(#lg)" opacity="0.85"/>
+              <text x="64" y="182" font-family="Inter, system-ui, sans-serif" font-size="16" fill="rgba(245,245,245,0.75)">
+                AI COACH PLATFORM
+              </text>
+            </svg>
+
+            <h1>
+              <span class="accent" data-i18n="hero.h1a">DOMINA EL JUEGO.</span>
+              <span data-i18n="hero.h1b">NO LA ADMINISTRACIÓN.</span>
+            </h1>
+
+            <div class="dual" aria-label="Bilingual subheadline">
+              <div class="line">
+                <div class="badge">ES</div>
+                <p class="sub" data-i18n="hero.sub.es">La primera IA diseñada por y para preparadores de físico-culturismo. Analiza, predice y escala tu coaching sin perder el toque humano.</p>
+              </div>
+              <div class="line">
+                <div class="badge">EN</div>
+                <p class="sub" data-i18n="hero.sub.en">The first AI built by and for physique coaches. Analyze, predict, and scale your coaching without losing the human touch.</p>
+              </div>
+            </div>
+
+            <div class="cta-row" role="group" aria-label="Primary calls to action">
+              <a class="btn primary" href="#contact" data-ripple>
+                <i data-lucide="zap" aria-hidden="true"></i>
+                <span data-i18n="cta.start">EMPEZAR AHORA / START NOW</span>
+              </a>
+              <a class="btn outline" href="#demo" data-ripple>
+                <i data-lucide="play" aria-hidden="true"></i>
+                <span data-i18n="cta.demo">VER DEMO / WATCH DEMO</span>
+              </a>
+            </div>
+
+            <div class="stats" aria-label="Key stats">
+              <div class="stat">
+                <strong data-count="200" data-suffix="+" aria-label="200 plus">0</strong>
+                <span data-i18n="stats.coaches">PREPARADORES</span>
+              </div>
+              <div class="stat">
+                <strong data-count="15000" data-suffix="+" aria-label="15000 plus">0</strong>
+                <span data-i18n="stats.athletes">ATLETAS GESTIONADOS</span>
+              </div>
+              <div class="stat">
+                <strong data-count="2.5" data-decimals="1" data-suffix="M+" aria-label="2.5 million plus">0</strong>
+                <span data-i18n="stats.data">DATOS ANALIZADOS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mockups reveal" aria-label="Product mockups">
+            <!-- REEMPLAZAR MOCKUPS CON IMÁGENES SI SE DESEA -->
+            <div class="device laptop" aria-label="Laptop dashboard mockup">
+              <div class="topbar">
+                <span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span>
+                <span style="margin-left:8px">HGRAND — Dashboard</span>
+              </div>
+              <div class="screen">
+                <div class="chip"><i data-lucide="layout-dashboard" aria-hidden="true"></i><span data-i18n="mock.command">Command Center</span></div>
+                <div class="tile-grid">
+                  <div class="tile">
+                    <div class="row">
+                      <div style="display:flex;align-items:center;gap:10px">
+                        <span class="status g" aria-hidden="true"></span>
+                        <strong style="font-size:13px">Carlos M.</strong>
+                      </div>
+                      <span class="tag" data-i18n="mock.opt">Óptimo</span>
+                    </div>
+                    <div class="spark" aria-hidden="true">
+                      <svg viewBox="0 0 100 24" preserveAspectRatio="none">
+                        <path d="M0 18 L18 14 L32 16 L48 10 L62 12 L74 7 L88 9 L100 5" fill="none" stroke="rgba(229,57,53,.75)" stroke-width="2"/>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div class="tile-grid" style="grid-template-columns:1fr 1fr; gap:10px">
+                    <div class="mini-card">
+                      <h4 data-i18n="mock.alerts">Alertas</h4>
+                      <p><span style="color:rgba(16,185,129,.9)">●</span> <span data-i18n="mock.green">Progreso óptimo</span></p>
+                      <p><span style="color:rgba(245,158,11,.9)">●</span> <span data-i18n="mock.yellow">Plateau detectado</span></p>
+                      <p><span style="color:rgba(239,68,68,.9)">●</span> <span data-i18n="mock.red">Sin check-in</span></p>
+                    </div>
+                    <div class="mini-card">
+                      <h4 data-i18n="mock.queue">Queue</h4>
+                      <div class="kpi">
+                        <span data-i18n="mock.now">Ahora:</span><span style="color:var(--text)">8</span>
+                        <span data-i18n="mock.today">Hoy:</span><span style="color:var(--text)">21</span>
+                        <span data-i18n="mock.week">Semana:</span><span style="color:var(--text)">60</span>
+                      </div>
+                      <div class="spark" style="height:34px;margin-top:10px" aria-hidden="true">
+                        <svg viewBox="0 0 100 24" preserveAspectRatio="none">
+                          <path d="M0 20 L18 18 L34 15 L50 13 L66 12 L82 8 L100 6" fill="none" stroke="rgba(229,57,53,.70)" stroke-width="2"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="glow" aria-hidden="true"></div>
+            </div>
+
+            <div class="device phone" aria-label="Mobile athlete app mockup">
+              <div class="topbar">
+                <span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span>
+                <span style="margin-left:8px">Athlete App</span>
+              </div>
+              <div class="screen">
+                <div class="chip"><i data-lucide="camera" aria-hidden="true"></i><span data-i18n="mock.checkin">Weekly Check-In</span></div>
+                <div class="tile-grid">
+                  <div class="tile">
+                    <div class="row">
+                      <strong style="font-size:13px" data-i18n="mock.upload">Subir fotos</strong>
+                      <span class="tag">1/3</span>
+                    </div>
+                    <div class="spark" style="height:54px" aria-hidden="true">
+                      <svg viewBox="0 0 100 24" preserveAspectRatio="none">
+                        <path d="M0 16 L16 15 L32 14 L48 14 L64 12 L80 11 L100 10" fill="none" stroke="rgba(229,57,53,.75)" stroke-width="2"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="tile">
+                    <div class="row">
+                      <strong style="font-size:13px" data-i18n="mock.metrics">Medidas</strong>
+                      <span class="tag" data-i18n="mock.auto">Auto</span>
+                    </div>
+                    <p style="margin:8px 0 0;color:var(--muted);font-size:12px" data-i18n="mock.ready">Listo en 12s</p>
+                  </div>
+                </div>
+              </div>
+              <div class="glow" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) EL PROBLEMA -->
+    <section class="section problem" id="problem" aria-label="Problem">
+      <div class="container">
+        <div class="problem-wrap">
+          <div class="reveal">
+            <p class="kicker" data-i18n="problem.k">EL PROBLEMA / THE PROBLEM</p>
+            <h2 class="h2" data-i18n="problem.h">Excel no escala. Datos sí.</h2>
+            <div class="dual" style="margin-top:10px">
+              <div class="line">
+                <div class="badge">ES</div>
+                <p class="sub" data-i18n="problem.es">Gestionar 30 atletas con Excel, WhatsApp y memoria fotográfica no escala. Pierdes horas en administración que deberías invertir en coaching estratégico.</p>
+              </div>
+              <div class="line">
+                <div class="badge">EN</div>
+                <p class="sub" data-i18n="problem.en">Managing 30 athletes with Excel, WhatsApp, and photographic memory doesn't scale. You lose hours on admin that should go into strategic coaching.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card chaos reveal" aria-label="Chaos to clarity illustration">
+            <div class="wipe" aria-hidden="true"></div>
+            <!-- minimal SVG: chaos -> order -->
+            <svg viewBox="0 0 900 520" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="cg" x1="0" x2="1">
+                  <stop offset="0" stop-color="rgba(245,245,245,.10)"/>
+                  <stop offset="1" stop-color="rgba(245,245,245,.02)"/>
+                </linearGradient>
+                <linearGradient id="rg" x1="0" x2="1">
+                  <stop offset="0" stop-color="rgba(229,57,53,.55)"/>
+                  <stop offset="1" stop-color="rgba(229,57,53,.08)"/>
+                </linearGradient>
+              </defs>
+
+              <!-- left chaos -->
+              <g opacity="0.9">
+                <rect x="70" y="80" width="260" height="160" rx="18" fill="url(#cg)" stroke="rgba(245,245,245,.12)"/>
+                <rect x="100" y="110" width="200" height="18" rx="9" fill="rgba(245,245,245,.10)"/>
+                <rect x="100" y="140" width="160" height="18" rx="9" fill="rgba(245,245,245,.07)"/>
+                <rect x="100" y="170" width="190" height="18" rx="9" fill="rgba(245,245,245,.05)"/>
+                <rect x="250" y="220" width="220" height="140" rx="18" fill="url(#cg)" stroke="rgba(245,245,245,.12)" transform="rotate(-8 250 220)"/>
+                <rect x="160" y="270" width="240" height="150" rx="18" fill="url(#cg)" stroke="rgba(245,245,245,.12)" transform="rotate(10 160 270)"/>
+              </g>
+
+              <!-- arrow / transformation -->
+              <path d="M450 260 C520 220, 560 220, 620 260" fill="none" stroke="url(#rg)" stroke-width="8" stroke-linecap="round" opacity="0.85"/>
+              <path d="M620 260 l-20 -14 M620 260 l-20 14" stroke="rgba(229,57,53,.75)" stroke-width="6" stroke-linecap="round"/>
+
+              <!-- right order -->
+              <g>
+                <rect x="610" y="110" width="240" height="300" rx="22" fill="rgba(0,0,0,.18)" stroke="rgba(229,57,53,.30)"/>
+                <rect x="640" y="150" width="180" height="40" rx="14" fill="rgba(229,57,53,.14)" stroke="rgba(229,57,53,.35)"/>
+                <rect x="640" y="210" width="180" height="40" rx="14" fill="rgba(245,245,245,.06)" stroke="rgba(245,245,245,.12)"/>
+                <rect x="640" y="270" width="180" height="40" rx="14" fill="rgba(245,245,245,.06)" stroke="rgba(245,245,245,.12)"/>
+                <rect x="640" y="330" width="180" height="40" rx="14" fill="rgba(245,245,245,.06)" stroke="rgba(245,245,245,.12)"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) FEATURES -->
+    <section class="section" id="features" aria-label="Features">
+      <div class="container">
+        <p class="kicker reveal" data-i18n="features.k">HERRAMIENTAS DE ÉLITE / ELITE TOOLS</p>
+        <h2 class="h2 reveal"><span data-i18n="features.h1">HERRAMIENTAS</span> <span style="color:var(--red)" data-i18n="features.h2">DE ÉLITE</span></h2>
+        <p class="lead reveal" data-i18n="features.lead">Cuatro sistemas diseñados para acelerar decisiones y eliminar fricción. Menos administración. Más coaching.</p>
+
+        <div class="grid features-grid" style="margin-top:18px">
+          <article class="feature reveal">
+            <div class="top">
+              <div class="icon" aria-hidden="true"><i data-lucide="eye"></i></div>
+              <div>
+                <h3 data-i18n="f1.t">ANÁLISIS VISUAL CON IA</h3>
+                <p data-i18n="f1.d">Fotos de progreso y videos de técnica analizados automáticamente. Detecta desequilibrios musculares y errores de forma en segundos.</p>
+                <p style="margin:10px 0 0;color:var(--muted2);font-size:12px" data-i18n="f1.en">AI VISUAL ANALYSIS — Progress photos and technique videos analyzed automatically. Detect muscular imbalances and form errors in seconds.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="feature reveal">
+            <div class="top">
+              <div class="icon" aria-hidden="true"><i data-lucide="brain"></i></div>
+              <div>
+                <h3 data-i18n="f2.t">MEMORIA PERSISTENTE</h3>
+                <p data-i18n="f2.d">Cada atleta tiene un perfil evolutivo. La IA aprende qué protocolos funcionan para su fenotipo específico.</p>
+                <p style="margin:10px 0 0;color:var(--muted2);font-size:12px" data-i18n="f2.en">PERSISTENT MEMORY — Every athlete has an evolving profile. The AI learns which protocols work for their specific phenotype.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="feature reveal">
+            <div class="top">
+              <div class="icon" aria-hidden="true"><i data-lucide="trending-up"></i></div>
+              <div>
+                <h3 data-i18n="f3.t">PREDICCIÓN DE PLATEAUS</h3>
+                <p data-i18n="f3.d">Detecta estancamientos 2-3 semanas antes. Recibe alertas con soluciones probadas basadas en datos históricos.</p>
+                <p style="margin:10px 0 0;color:var(--muted2);font-size:12px" data-i18n="f3.en">PLATEAU PREDICTION — Detect plateaus 2-3 weeks in advance. Get alerts with proven solutions based on historical data.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="feature reveal">
+            <div class="top">
+              <div class="icon" aria-hidden="true"><i data-lucide="grid-3x3"></i></div>
+              <div>
+                <h3 data-i18n="f4.t">GESTIÓN MASIVA</h3>
+                <p data-i18n="f4.d">Dashboard Kanban para revisar 50 atletas en 20 minutos. Priorización automática por alertas de severidad.</p>
+                <p style="margin:10px 0 0;color:var(--muted2);font-size:12px" data-i18n="f4.en">BATCH MANAGEMENT — Kanban dashboard to review 50 athletes in 20 minutes. Automatic prioritization by severity alerts.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) HOW IT WORKS -->
+    <section class="section how" id="how" aria-label="How it works">
+      <div class="container">
+        <p class="kicker reveal" data-i18n="how.k">CÓMO FUNCIONA / HOW IT WORKS</p>
+        <h2 class="h2 reveal"><span data-i18n="how.h1">DE DATOS</span> <span style="color:var(--red)" data-i18n="how.h2">A DECISIÓN</span></h2>
+        <p class="lead reveal" data-i18n="how.lead">Un flujo simple: importas, conectas y decides. La IA hace el trabajo pesado; tú mantienes el control final.</p>
+
+        <div class="timeline reveal" id="timeline">
+          <div class="tl-line" aria-hidden="true"><div class="draw" id="tlDraw"></div></div>
+          <div class="steps">
+            <div class="step">
+              <div class="num">1</div>
+              <h4 data-i18n="s1.t">IMPORTA / IMPORT</h4>
+              <p data-i18n="s1.d">Sube tu roster de atletas. CSV, manual, o integración con apps existentes.</p>
+              <p style="margin-top:8px;color:var(--muted2)" data-i18n="s1.en">Upload your athlete roster. CSV, manual, or integration with existing apps.</p>
+            </div>
+            <div class="step">
+              <div class="num">2</div>
+              <h4 data-i18n="s2.t">CONFIGURA / CONFIGURE</h4>
+              <p data-i18n="s2.d">Crea plantillas de entrenamiento y nutrición. La IA las adapta a cada fenotipo.</p>
+              <p style="margin-top:8px;color:var(--muted2)" data-i18n="s2.en">Create training and nutrition templates. The AI adapts them to each phenotype.</p>
+            </div>
+            <div class="step">
+              <div class="num">3</div>
+              <h4 data-i18n="s3.t">CONECTA / CONNECT</h4>
+              <p data-i18n="s3.d">Tus atletas usan la app móvil para subir fotos, medidas y videos semanales.</p>
+              <p style="margin-top:8px;color:var(--muted2)" data-i18n="s3.en">Your athletes use the mobile app to upload photos, measurements, and weekly videos.</p>
+            </div>
+            <div class="step">
+              <div class="num">4</div>
+              <h4 data-i18n="s4.t">ANALIZA / ANALYZE</h4>
+              <p data-i18n="s4.d">La IA procesa datos, detecta patrones y genera recomendaciones personalizadas.</p>
+              <p style="margin-top:8px;color:var(--muted2)" data-i18n="s4.en">The AI processes data, detects patterns, and generates personalized recommendations.</p>
+            </div>
+            <div class="step">
+              <div class="num">5</div>
+              <h4 data-i18n="s5.t">DECIDE / DECIDE</h4>
+              <p data-i18n="s5.d">Revisa, aprueba o ajusta con un click. Mantienes el control final siempre.</p>
+              <p style="margin-top:8px;color:var(--muted2)" data-i18n="s5.en">Review, approve, or adjust with one click. You maintain final control always.</p>
+            </div>
+            <div class="step">
+              <div class="num">6</div>
+              <h4 data-i18n="s6.t">ESCALA / SCALE</h4>
+              <p data-i18n="s6.d">Tus atletas reciben planes actualizados automáticamente. Tú ganas tiempo.</p>
+              <p style="margin-top:8px;color:var(--muted2)" data-i18n="s6.en">Your athletes receive automatically updated plans. You gain time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) DASHBOARD -->
+    <section class="section" id="dashboard" aria-label="Dashboard">
+      <div class="container">
+        <p class="kicker reveal" data-i18n="dash.k">TU CENTRO DE MANDO / YOUR COMMAND CENTER</p>
+        <h2 class="h2 reveal"><span data-i18n="dash.h1">CENTRO</span> <span style="color:var(--red)" data-i18n="dash.h2">DE MANDO</span></h2>
+        <p class="lead reveal" data-i18n="dash.lead">Visualiza el estado de toda tu cartera en un vistazo. La IA prioriza quién necesita tu atención ahora.</p>
+
+        <div class="reveal" style="margin-top:18px">
+          <div class="dashboard" role="region" aria-label="Interactive dashboard mockup">
+            <div class="dash-head">
+              <div style="display:flex;align-items:center;gap:10px">
+                <i data-lucide="layers" aria-hidden="true"></i>
+                <span>HGRAND — Dashboard</span>
+              </div>
+              <div class="filters" role="tablist" aria-label="Dashboard filters">
+                <div class="filter active" role="tab" tabindex="0" aria-selected="true" data-filter="all" data-i18n="filter.all">Todos</div>
+                <div class="filter" role="tab" tabindex="0" aria-selected="false" data-filter="red" data-i18n="filter.urgent">Atención inmediata</div>
+                <div class="filter" role="tab" tabindex="0" aria-selected="false" data-filter="yellow" data-i18n="filter.next">Competencia próxima</div>
+                <div class="filter" role="tab" tabindex="0" aria-selected="false" data-filter="green" data-i18n="filter.new">Nuevos</div>
+              </div>
+            </div>
+
+            <div class="dash-body">
+              <aside class="sidebar" aria-label="Athlete list">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+                  <span style="font-family:var(--hfont);letter-spacing:.12em;text-transform:uppercase" data-i18n="dash.roster">Roster</span>
+                  <span class="tag" data-i18n="dash.week">Semana</span>
+                </div>
+
+                <a class="ath" href="#dashboard" aria-label="Athlete Carlos M.">
+                  <div class="avatar" aria-hidden="true"></div>
+                  <div class="meta"><strong>Carlos M.</strong><span data-i18n="dash.ok">Óptimo</span></div>
+                </a>
+                <a class="ath" href="#dashboard" aria-label="Athlete Ana L.">
+                  <div class="avatar" aria-hidden="true"></div>
+                  <div class="meta"><strong>Ana L.</strong><span data-i18n="dash.plat">Plateau</span></div>
+                </a>
+                <a class="ath" href="#dashboard" aria-label="Athlete Juan P.">
+                  <div class="avatar" aria-hidden="true"></div>
+                  <div class="meta"><strong>Juan P.</strong><span data-i18n="dash.noc">Sin check-in</span></div>
+                </a>
+                <a class="ath" href="#dashboard" aria-label="Athlete Sofia K.">
+                  <div class="avatar" aria-hidden="true"></div>
+                  <div class="meta"><strong>Sofía K.</strong><span data-i18n="dash.ok">Óptimo</span></div>
+                </a>
+                <a class="ath" href="#dashboard" aria-label="Athlete Diego M.">
+                  <div class="avatar" aria-hidden="true"></div>
+                  <div class="meta"><strong>Diego M.</strong><span data-i18n="dash.plat">Plateau</span></div>
+                </a>
+              </aside>
+
+              <div class="main" aria-label="Athlete cards">
+                <div class="ath-grid" id="athGrid">
+                  <div class="ath-card" data-sev="green" tabindex="0" role="button" aria-label="Carlos card">
+                    <div class="row">
+                      <h5>Carlos M.</h5>
+                      <span class="sev"><span class="status g" aria-hidden="true"></span><span data-i18n="card.ok">Progreso óptimo</span></span>
+                    </div>
+                    <p data-i18n="card.carlos">Semana 8/12 — Progreso óptimo</p>
+                    <div class="details" aria-hidden="true">
+                      <div class="spark">
+                        <svg viewBox="0 0 100 24" preserveAspectRatio="none">
+                          <path d="M0 18 L14 16 L26 14 L40 13 L56 10 L70 9 L84 7 L100 6" fill="none" stroke="rgba(229,57,53,.75)" stroke-width="2"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="ath-card" data-sev="yellow" tabindex="0" role="button" aria-label="Ana card">
+                    <div class="row">
+                      <h5>Ana L.</h5>
+                      <span class="sev"><span class="status y" aria-hidden="true"></span><span data-i18n="card.warn">Revisar</span></span>
+                    </div>
+                    <p data-i18n="card.ana">Plateau detectado — Revisar volumen</p>
+                    <div class="details" aria-hidden="true">
+                      <div class="spark">
+                        <svg viewBox="0 0 100 24" preserveAspectRatio="none">
+                          <path d="M0 14 L14 14 L28 14 L44 14 L60 14 L78 14 L100 14" fill="none" stroke="rgba(229,57,53,.75)" stroke-width="2"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="ath-card" data-sev="red" tabindex="0" role="button" aria-label="Juan card">
+                    <div class="row">
+                      <h5>Juan P.</h5>
+                      <span class="sev"><span class="status r" aria-hidden="true"></span><span data-i18n="card.urgent">Urgente</span></span>
+                    </div>
+                    <p data-i18n="card.juan">Sin checkin 10 días — Contactar</p>
+                    <div class="details" aria-hidden="true">
+                      <div class="spark">
+                        <svg viewBox="0 0 100 24" preserveAspectRatio="none">
+                          <path d="M0 10 L18 12 L36 16 L52 18 L70 19 L86 20 L100 21" fill="none" stroke="rgba(229,57,53,.75)" stroke-width="2"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <p style="margin:12px 0 0;color:var(--muted2);font-size:12px" data-i18n="dash.tip">
+                  Tip: pasa el cursor o toca una tarjeta para ver el sparkline de 4 semanas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) TESTIMONIOS -->
+    <section class="section testimonials" id="testimonials" aria-label="Testimonials">
+      <div class="container">
+        <p class="kicker reveal" data-i18n="t.k">TESTIMONIOS / TESTIMONIALS</p>
+        <h2 class="h2 reveal"><span data-i18n="t.h1">PRUEBA</span> <span style="color:var(--red)" data-i18n="t.h2">SOCIAL</span></h2>
+        <p class="lead reveal" data-i18n="t.lead">Resultados por eficiencia: más atletas, menos horas, mejores decisiones.</p>
+
+        <div class="grid t-grid">
+          <article class="t-card reveal">
+            <div class="t-top">
+              <div class="photo" aria-hidden="true"></div>
+              <div class="t-name">
+                <strong>Marco R.</strong>
+                <span data-i18n="t1.role">Preparador IFBB Pro</span>
+              </div>
+            </div>
+            <p class="quote" data-i18n="t1.q">“Pasé de gestionar 15 atletas en 40 horas semanales a 40 atletas en 20 horas. La detección temprana de plateaus es oro puro.”</p>
+            <p class="quote" style="margin-top:10px;color:var(--muted2)" data-i18n="t1.en">“I went from managing 15 athletes in 40 hours weekly to 40 athletes in 20 hours. Early plateau detection is pure gold.”</p>
+          </article>
+
+          <article class="t-card reveal">
+            <div class="t-top">
+              <div class="photo" aria-hidden="true"></div>
+              <div class="t-name">
+                <strong>Laura S.</strong>
+                <span data-i18n="t2.role">Coach online 50k seguidores</span>
+              </div>
+            </div>
+            <p class="quote" data-i18n="t2.q">“Mis atletas están más comprometidos porque ven que analizo sus datos en tiempo real, no cada mes.”</p>
+            <p class="quote" style="margin-top:10px;color:var(--muted2)" data-i18n="t2.en">“My athletes are more committed because they see me analyzing their data in real-time, not monthly.”</p>
+          </article>
+
+          <article class="t-card reveal">
+            <div class="t-top">
+              <div class="photo" aria-hidden="true"></div>
+              <div class="t-name">
+                <strong>Diego M.</strong>
+                <span data-i18n="t3.role">Preparador Powerlifting</span>
+              </div>
+            </div>
+            <p class="quote" data-i18n="t3.q">“La comparación cruzada entre atletas similares me ha hecho descubrir qué protocolos realmente funcionan.”</p>
+            <p class="quote" style="margin-top:10px;color:var(--muted2)" data-i18n="t3.en">“Cross-comparison between similar athletes helped me discover which protocols actually work.”</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7) PRICING -->
+    <section class="section" id="pricing" aria-label="Pricing">
+      <div class="container">
+        <p class="kicker reveal" data-i18n="p.k">PRICING</p>
+        <h2 class="h2 reveal"><span data-i18n="p.h1">PRECIO</span> <span style="color:var(--red)" data-i18n="p.h2">Y ESCALA</span></h2>
+        <div class="pricing-top reveal">
+          <p class="lead" style="margin:0" data-i18n="p.lead">Elige el plan según tu roster. Puedes cambiar cuando quieras.</p>
+
+          <div class="toggle" role="group" aria-label="Billing period toggle">
+            <button type="button" id="billMonthly" aria-pressed="true"><i data-lucide="calendar" aria-hidden="true"></i><span data-i18n="p.m">MENSUAL</span></button>
+            <button type="button" id="billYearly" aria-pressed="false"><i data-lucide="badge-percent" aria-hidden="true"></i><span data-i18n="p.y">ANUAL -20%</span></button>
+          </div>
+        </div>
+
+        <div class="grid p-grid">
+          <article class="p-card reveal">
+            <h3 data-i18n="p1.t">STARTER / INICIO</h3>
+            <div class="price">
+              <span class="fade" id="p1Price">$29</span>
+              <span class="per" id="p1Per" data-i18n="per.m">/MES</span>
+            </div>
+            <ul class="feat">
+              <li><i data-lucide="check" aria-hidden="true"></i><span data-i18n="p1.f1">Hasta 15 atletas / Up to 15 athletes</span></li>
+              <li><i data-lucide="check" aria-hidden="true"></i><span data-i18n="p1.f2">Análisis de fotos / Photo analysis</span></li>
+              <li><i data-lucide="check" aria-hidden="true"></i><span data-i18n="p1.f3">Soporte email / Email support</span></li>
+            </ul>
+            <a class="btn p-cta" href="#contact" data-ripple><span data-i18n="p1.cta">COMENZAR / START</span></a>
+          </article>
+
+          <article class="p-card pro reveal">
+            <div class="badge-pop" data-i18n="p.pop">MÁS POPULAR / MOST POPULAR</div>
+            <h3 data-i18n="p2.t">PRO</h3>
+            <div class="price">
+              <span class="fade" id="p2Price">$79</span>
+              <span class="per" id="p2Per" data-i18n="per.m">/MES</span>
+            </div>
+            <ul class="feat">
+              <li><i data-lucide="check" aria-hidden="true"></i><span data-i18n="p2.f1">Hasta 60 atletas / Up to 60 athletes</span></li>
+              <li><i data-lucide="check" aria-hidden="true"></i><span data-i18n="p2.f2">Análisis de video / Video analysis</span></li>
+              <li><i data-lucide="check" aria-hidden="true"></i><span data-i18n="p2.f3">Predicción de plateaus / Plateau prediction</span></li>
+              <li><i data-lucide="check" aria-hidden="true"></i><span data-i18n="p2.f4">Comparación entre atletas / Cross-athlete comparison</span></li>
+              <li><i data-lucide="check" aria-hidden="true"></i><span data-i18n="p2.f5">Soporte prioritario / Priority support</span></li>
+            </ul>
+            <a class="btn primary p-cta" href="#contact" data-ripple><span data-i18n="p2.cta">ELEGIR PRO / CHOOSE PRO</span></a>
+          </article>
+
+          <article class="p-card reveal">
+            <h3 data-i18n="p3.t">ELITE</h3>
+            <div class="price">
+              <span class="fade" id="p3Price">$149</span>
+              <span class="per" id="p3Per" data-i18n="per.m">/MES</span>
+            </div>
+            <ul class="feat">
+              <li><i data-lucide="check" aria-hidden="true"></i><span data-i18n="p3.f1">Atletas ilimitados / Unlimited athletes</span></li>
+              <li><i data-lucide="check" aria-hidden="true"></i><span data-i18n="p3.f2">API acceso / API access</span></li>
+              <li><i data-lucide="check" aria-hidden="true"></i><span data-i18n="p3.f3">White-label opcional / Optional white-label</span></li>
+              <li><i data-lucide="check" aria-hidden="true"></i><span data-i18n="p3.f4">Onboarding personalizado / Personalized onboarding</span></li>
+              <li><i data-lucide="check" aria-hidden="true"></i><span data-i18n="p3.f5">Soporte 24/7 / 24/7 support</span></li>
+            </ul>
+            <a class="btn p-cta" href="#contact" data-ripple><span data-i18n="p3.cta">CONTACTAR / CONTACT SALES</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8) FAQ -->
+    <section class="section faq" id="faq" aria-label="FAQ">
+      <div class="container">
+        <p class="kicker reveal" data-i18n="faq.k">PREGUNTAS FRECUENTES / FREQUENTLY ASKED QUESTIONS</p>
+        <h2 class="h2 reveal"><span data-i18n="faq.h1">FAQ</span> <span style="color:var(--red)" data-i18n="faq.h2">CLARO</span></h2>
+        <p class="lead reveal" data-i18n="faq.lead">Respuestas directas. Sin humo. Tú decides; la IA acelera.</p>
+
+        <div class="accordion reveal">
+          <details>
+            <summary>
+              <span class="q" data-i18n="q1.q">¿La IA reemplaza al preparador?</span>
+              <span class="chev" aria-hidden="true"><i data-lucide="plus"></i></span>
+            </summary>
+            <div class="a" data-i18n="q1.a">No. HGRAND es una herramienta que amplifica tu capacidad. Tú tomas todas las decisiones finales; la IA hace el análisis de datos pesado.</div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="q" data-i18n="q2.q">¿Qué pasa con la privacidad de mis atletas?</span>
+              <span class="chev" aria-hidden="true"><i data-lucide="plus"></i></span>
+            </summary>
+            <div class="a" data-i18n="q2.a">Cumplimos GDPR y usamos encriptación de grado bancario. Las fotos se procesan y se eliminan; nunca entrenan modelos generales.</div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="q" data-i18n="q3.q">¿Funciona para otros deportes o solo fisicoculturismo?</span>
+              <span class="chev" aria-hidden="true"><i data-lucide="plus"></i></span>
+            </summary>
+            <div class="a" data-i18n="q3.a">Optimizado para físico-culturismo y deportes de fuerza. Estamos expandiendo a otros deportes de forma progresiva.</div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="q" data-i18n="q4.q">¿Puedo usar mis propias plantillas de entrenamiento?</span>
+              <span class="chev" aria-hidden="true"><i data-lucide="plus"></i></span>
+            </summary>
+            <div class="a" data-i18n="q4.a">Sí. Sube tus protocolos y la IA los adapta a cada atleta basándose en su historial de respuesta.</div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="q" data-i18n="q5.q">¿Qué necesitan mis atletas para usar la app?</span>
+              <span class="chev" aria-hidden="true"><i data-lucide="plus"></i></span>
+            </summary>
+            <div class="a" data-i18n="q5.a">Solo un smartphone. La app móvil es gratuita para tus atletas; tú pagas la suscripción de preparador.</div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="q" data-i18n="q6.q">¿Hay período de prueba?</span>
+              <span class="chev" aria-hidden="true"><i data-lucide="plus"></i></span>
+            </summary>
+            <div class="a" data-i18n="q6.a">14 días gratuitos con acceso completo a PRO. No requiere tarjeta de crédito.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9) CTA FINAL -->
+    <section class="section final-cta" id="contact" aria-label="Final CTA">
+      <div class="pattern" aria-hidden="true"></div>
+      <div class="container">
+        <p class="kicker reveal" style="color:rgba(255,255,255,.88)" data-i18n="cta.k">CTA FINAL / FINAL CTA</p>
+        <h2 class="h2 reveal">
+          <span data-i18n="cta.h1">DEJA DE ADMINISTRAR.</span>
+          <span data-i18n="cta.h2">EMPIEZA A DOMINAR.</span>
+        </h2>
+        <p class="lead reveal" data-i18n="cta.sub">14 días gratuitos. Sin tarjeta de crédito. Cancela cuando quieras.</p>
+
+        <form class="form reveal" id="leadForm" novalidate>
+          <label for="email" style="position:absolute;left:-9999px">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="Email" aria-label="Email" required />
+          <button class="btn dark" type="submit" data-ripple>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+            <span data-i18n="cta.btn">EMPEZAR AHORA / START NOW</span>
+          </button>
+        </form>
+
+        <div class="msg" id="okMsg" data-i18n="msg.ok">¡Gracias! Te contactamos pronto / Thanks! We'll contact you soon</div>
+        <div class="msg" id="errMsg" data-i18n="msg.err">Email inválido / Invalid email</div>
+
+        <p class="fine reveal" data-i18n="cta.fine">Al registrarte, aceptas nuestros Términos y Política de Privacidad / By signing up, you agree to our Terms and Privacy Policy</p>
+      </div>
+    </section>
+
+    <!-- 10) FOOTER -->
+    <footer aria-label="Footer">
+      <div class="container">
+        <div class="foot-grid">
+          <div class="foot reveal">
+            <h4>HGRAND</h4>
+            <p style="margin:0;color:var(--muted);line-height:1.6" data-i18n="foot.tag">
+              Tecnología de elite para coaches de elite / Elite technology for elite coaches
+            </p>
+            <div class="social" aria-label="Social links">
+              <a href="#" aria-label="Instagram"><i data-lucide="instagram" aria-hidden="true"></i></a>
+              <a href="#" aria-label="YouTube"><i data-lucide="youtube" aria-hidden="true"></i></a>
+              <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" aria-hidden="true"></i></a>
+              <a href="#" aria-label="X"><i data-lucide="twitter" aria-hidden="true"></i></a>
+            </div>
+          </div>
+
+          <div class="foot reveal">
+            <h4 data-i18n="foot.prod">Producto</h4>
+            <a href="#features" data-i18n="nav.features">Características</a>
+            <a href="#pricing" data-i18n="nav.pricing">Precios</a>
+            <a href="#changelog" id="demo" data-i18n="foot.changelog">Changelog</a>
+            <a href="#roadmap" data-i18n="foot.roadmap">Roadmap</a>
+          </div>
+
+          <div class="foot reveal">
+            <h4 data-i18n="foot.res">Recursos</h4>
+            <a href="#" data-i18n="foot.blog">Blog</a>
+            <a href="#" data-i18n="foot.guides">Guías</a>
+            <a href="#" data-i18n="foot.api">API Docs</a>
+            <a href="#" data-i18n="foot.comm">Comunidad</a>
+          </div>
+
+          <div class="foot reveal">
+            <h4 data-i18n="foot.legal">Legal</h4>
+            <a href="#" data-i18n="foot.terms">Términos</a>
+            <a href="#" data-i18n="foot.privacy">Privacidad</a>
+            <a href="#" data-i18n="foot.cookies">Cookies</a>
+            <a href="#contact" data-i18n="nav.contact">Contacto</a>
+          </div>
+        </div>
+
+        <div class="bottom reveal">
+          <div>© 2026 HGRAND AI Coach. <span data-i18n="foot.rights">Todos los derechos reservados / All rights reserved.</span></div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <span data-i18n="foot.lang">Idioma:</span>
+            <div class="lang-toggle" aria-label="Language toggle footer">
+              <button type="button" class="lang" data-lang="es" aria-pressed="true">ES</button>
+              <button type="button" class="lang" data-lang="en" aria-pressed="false">EN</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- anchor placeholder for nav -->
+        <div id="login" aria-hidden="true" style="height:1px"></div>
+        <div id="changelog" aria-hidden="true" style="height:1px"></div>
+        <div id="roadmap" aria-hidden="true" style="height:1px"></div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Init lucide icons
+    try { lucide.createIcons(); } catch(e) {}
+
+    // Theme toggle
+    const themeBtn = document.getElementById('themeBtn');
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('hgrand_theme');
+    if (savedTheme) root.setAttribute('data-theme', savedTheme);
+
+    themeBtn?.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('hgrand_theme', next);
+    });
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const drawer = document.getElementById('drawer');
+    menuBtn?.addEventListener('click', () => drawer?.classList.toggle('open'));
+    document.querySelectorAll('[data-close-drawer]').forEach(a => {
+      a.addEventListener('click', () => drawer?.classList.remove('open'));
+    });
+    document.addEventListener('click', (e) => {
+      if (!drawer || !menuBtn) return;
+      const t = e.target;
+      const inside = drawer.contains(t) || menuBtn.contains(t);
+      if (!inside) drawer.classList.remove('open');
+    });
+
+    // Language system
+    const dict = {
+      es: {
+        "nav.features":"Características",
+        "nav.about":"Nosotros",
+        "nav.pricing":"Precios",
+        "nav.faq":"FAQ",
+        "nav.contact":"Contacto",
+        "nav.login":"Iniciar sesión",
+
+        "hero.h1a":"DOMINA EL JUEGO.",
+        "hero.h1b":"NO LA ADMINISTRACIÓN.",
+        "hero.sub.es":"La primera IA diseñada por y para preparadores de físico-culturismo. Analiza, predice y escala tu coaching sin perder el toque humano.",
+        "hero.sub.en":"The first AI built by and for physique coaches. Analyze, predict, and scale your coaching without losing the human touch.",
+
+        "cta.start":"EMPEZAR AHORA / START NOW",
+        "cta.demo":"VER DEMO / WATCH DEMO",
+
+        "stats.coaches":"PREPARADORES",
+        "stats.athletes":"ATLETAS GESTIONADOS",
+        "stats.data":"DATOS ANALIZADOS",
+
+        "mock.command":"Centro de mando",
+        "mock.opt":"Óptimo",
+        "mock.alerts":"Alertas",
+        "mock.green":"Progreso óptimo",
+        "mock.yellow":"Plateau detectado",
+        "mock.red":"Sin check-in",
+        "mock.queue":"Cola",
+        "mock.now":"Ahora:",
+        "mock.today":"Hoy:",
+        "mock.week":"Semana:",
+        "mock.checkin":"Check-in semanal",
+        "mock.upload":"Subir fotos",
+        "mock.metrics":"Medidas",
+        "mock.auto":"Auto",
+        "mock.ready":"Listo en 12s",
+
+        "problem.k":"EL PROBLEMA / THE PROBLEM",
+        "problem.h":"Excel no escala. Datos sí.",
+        "problem.es":"Gestionar 30 atletas con Excel, WhatsApp y memoria fotográfica no escala. Pierdes horas en administración que deberías invertir en coaching estratégico.",
+        "problem.en":"Managing 30 athletes with Excel, WhatsApp, and photographic memory doesn't scale. You lose hours on admin that should go into strategic coaching.",
+
+        "features.k":"HERRAMIENTAS DE ÉLITE / ELITE TOOLS",
+        "features.h1":"HERRAMIENTAS",
+        "features.h2":"DE ÉLITE",
+        "features.lead":"Cuatro sistemas diseñados para acelerar decisiones y eliminar fricción. Menos administración. Más coaching.",
+
+        "f1.t":"ANÁLISIS VISUAL CON IA",
+        "f1.d":"Fotos de progreso y videos de técnica analizados automáticamente. Detecta desequilibrios musculares y errores de forma en segundos.",
+        "f1.en":"AI VISUAL ANALYSIS — Progress photos and technique videos analyzed automatically. Detect muscular imbalances and form errors in seconds.",
+
+        "f2.t":"MEMORIA PERSISTENTE",
+        "f2.d":"Cada atleta tiene un perfil evolutivo. La IA aprende qué protocolos funcionan para su fenotipo específico.",
+        "f2.en":"PERSISTENT MEMORY — Every athlete has an evolving profile. The AI learns which protocols work for their specific phenotype.",
+
+        "f3.t":"PREDICCIÓN DE PLATEAUS",
+        "f3.d":"Detecta estancamientos 2-3 semanas antes. Recibe alertas con soluciones probadas basadas en datos históricos.",
+        "f3.en":"PLATEAU PREDICTION — Detect plateaus 2-3 weeks in advance. Get alerts with proven solutions based on historical data.",
+
+        "f4.t":"GESTIÓN MASIVA",
+        "f4.d":"Dashboard Kanban para revisar 50 atletas en 20 minutos. Priorización automática por alertas de severidad.",
+        "f4.en":"BATCH MANAGEMENT — Kanban dashboard to review 50 athletes in 20 minutes. Automatic prioritization by severity alerts.",
+
+        "how.k":"CÓMO FUNCIONA / HOW IT WORKS",
+        "how.h1":"DE DATOS",
+        "how.h2":"A DECISIÓN",
+        "how.lead":"Un flujo simple: importas, conectas y decides. La IA hace el trabajo pesado; tú mantienes el control final.",
+
+        "s1.t":"IMPORTA / IMPORT",
+        "s1.d":"Sube tu roster de atletas. CSV, manual, o integración con apps existentes.",
+        "s1.en":"Upload your athlete roster. CSV, manual, or integration with existing apps.",
+
+        "s2.t":"CONFIGURA / CONFIGURE",
+        "s2.d":"Crea plantillas de entrenamiento y nutrición. La IA las adapta a cada fenotipo.",
+        "s2.en":"Create training and nutrition templates. The AI adapts them to each phenotype.",
+
+        "s3.t":"CONECTA / CONNECT",
+        "s3.d":"Tus atletas usan la app móvil para subir fotos, medidas y videos semanales.",
+        "s3.en":"Your athletes use the mobile app to upload photos, measurements, and weekly videos.",
+
+        "s4.t":"ANALIZA / ANALYZE",
+        "s4.d":"La IA procesa datos, detecta patrones y genera recomendaciones personalizadas.",
+        "s4.en":"The AI processes data, detects patterns, and generates personalized recommendations.",
+
+        "s5.t":"DECIDE / DECIDE",
+        "s5.d":"Revisa, aprueba o ajusta con un click. Mantienes el control final siempre.",
+        "s5.en":"Review, approve, or adjust with one click. You maintain final control always.",
+
+        "s6.t":"ESCALA / SCALE",
+        "s6.d":"Tus atletas reciben planes actualizados automáticamente. Tú ganas tiempo.",
+        "s6.en":"Your athletes receive automatically updated plans. You gain time.",
+
+        "dash.k":"TU CENTRO DE MANDO / YOUR COMMAND CENTER",
+        "dash.h1":"CENTRO",
+        "dash.h2":"DE MANDO",
+        "dash.lead":"Visualiza el estado de toda tu cartera en un vistazo. La IA prioriza quién necesita tu atención ahora.",
+
+        "filter.all":"Todos",
+        "filter.urgent":"Atención inmediata",
+        "filter.next":"Competencia próxima",
+        "filter.new":"Nuevos",
+
+        "dash.roster":"Roster",
+        "dash.week":"Semana",
+        "dash.ok":"Óptimo",
+        "dash.plat":"Plateau",
+        "dash.noc":"Sin check-in",
+
+        "card.ok":"Progreso óptimo",
+        "card.warn":"Revisar",
+        "card.urgent":"Urgente",
+        "card.carlos":"Semana 8/12 — Progreso óptimo",
+        "card.ana":"Plateau detectado — Revisar volumen",
+        "card.juan":"Sin checkin 10 días — Contactar",
+        "dash.tip":"Tip: pasa el cursor o toca una tarjeta para ver el sparkline de 4 semanas.",
+
+        "t.k":"TESTIMONIOS / TESTIMONIALS",
+        "t.h1":"PRUEBA",
+        "t.h2":"SOCIAL",
+        "t.lead":"Resultados por eficiencia: más atletas, menos horas, mejores decisiones.",
+        "t1.role":"Preparador IFBB Pro",
+        "t1.q":"“Pasé de gestionar 15 atletas en 40 horas semanales a 40 atletas en 20 horas. La detección temprana de plateaus es oro puro.”",
+        "t1.en":"“I went from managing 15 athletes in 40 hours weekly to 40 athletes in 20 hours. Early plateau detection is pure gold.”",
+        "t2.role":"Coach online 50k seguidores",
+        "t2.q":"“Mis atletas están más comprometidos porque ven que analizo sus datos en tiempo real, no cada mes.”",
+        "t2.en":"“My athletes are more committed because they see me analyzing their data in real-time, not monthly.”",
+        "t3.role":"Preparador Powerlifting",
+        "t3.q":"“La comparación cruzada entre atletas similares me ha hecho descubrir qué protocolos realmente funcionan.”",
+        "t3.en":"“Cross-comparison between similar athletes helped me discover which protocols actually work.”",
+
+        "p.k":"PRICING",
+        "p.h1":"PRECIO",
+        "p.h2":"Y ESCALA",
+        "p.lead":"Elige el plan según tu roster. Puedes cambiar cuando quieras.",
+        "p.m":"MENSUAL",
+        "p.y":"ANUAL -20%",
+        "p.pop":"MÁS POPULAR / MOST POPULAR",
+        "per.m":"/MES",
+        "per.y":"/AÑO",
+
+        "p1.t":"STARTER / INICIO",
+        "p1.f1":"Hasta 15 atletas / Up to 15 athletes",
+        "p1.f2":"Análisis de fotos / Photo analysis",
+        "p1.f3":"Soporte email / Email support",
+        "p1.cta":"COMENZAR / START",
+
+        "p2.t":"PRO",
+        "p2.f1":"Hasta 60 atletas / Up to 60 athletes",
+        "p2.f2":"Análisis de video / Video analysis",
+        "p2.f3":"Predicción de plateaus / Plateau prediction",
+        "p2.f4":"Comparación entre atletas / Cross-athlete comparison",
+        "p2.f5":"Soporte prioritario / Priority support",
+        "p2.cta":"ELEGIR PRO / CHOOSE PRO",
+
+        "p3.t":"ELITE",
+        "p3.f1":"Atletas ilimitados / Unlimited athletes",
+        "p3.f2":"API acceso / API access",
+        "p3.f3":"White-label opcional / Optional white-label",
+        "p3.f4":"Onboarding personalizado / Personalized onboarding",
+        "p3.f5":"Soporte 24/7 / 24/7 support",
+        "p3.cta":"CONTACTAR / CONTACT SALES",
+
+        "faq.k":"PREGUNTAS FRECUENTES / FREQUENTLY ASKED QUESTIONS",
+        "faq.h1":"FAQ",
+        "faq.h2":"CLARO",
+        "faq.lead":"Respuestas directas. Sin humo. Tú decides; la IA acelera.",
+
+        "q1.q":"¿La IA reemplaza al preparador?",
+        "q1.a":"No. HGRAND es una herramienta que amplifica tu capacidad. Tú tomas todas las decisiones finales; la IA hace el análisis de datos pesado.",
+        "q2.q":"¿Qué pasa con la privacidad de mis atletas?",
+        "q2.a":"Cumplimos GDPR y usamos encriptación de grado bancario. Las fotos se procesan y se eliminan; nunca entrenan modelos generales.",
+        "q3.q":"¿Funciona para otros deportes o solo fisicoculturismo?",
+        "q3.a":"Optimizado para físico-culturismo y deportes de fuerza. Estamos expandiendo a otros deportes de forma progresiva.",
+        "q4.q":"¿Puedo usar mis propias plantillas de entrenamiento?",
+        "q4.a":"Sí. Sube tus protocolos y la IA los adapta a cada atleta basándose en su historial de respuesta.",
+        "q5.q":"¿Qué necesitan mis atletas para usar la app?",
+        "q5.a":"Solo un smartphone. La app móvil es gratuita para tus atletas; tú pagas la suscripción de preparador.",
+        "q6.q":"¿Hay período de prueba?",
+        "q6.a":"14 días gratuitos con acceso completo a PRO. No requiere tarjeta de crédito.",
+
+        "cta.k":"CTA FINAL / FINAL CTA",
+        "cta.h1":"DEJA DE ADMINISTRAR.",
+        "cta.h2":"EMPIEZA A DOMINAR.",
+        "cta.sub":"14 días gratuitos. Sin tarjeta de crédito. Cancela cuando quieras.",
+        "cta.btn":"EMPEZAR AHORA / START NOW",
+        "cta.fine":"Al registrarte, aceptas nuestros Términos y Política de Privacidad / By signing up, you agree to our Terms and Privacy Policy",
+        "msg.ok":"¡Gracias! Te contactamos pronto / Thanks! We'll contact you soon",
+        "msg.err":"Email inválido / Invalid email",
+
+        "foot.tag":"Tecnología de elite para coaches de elite / Elite technology for elite coaches",
+        "foot.prod":"Producto",
+        "foot.changelog":"Changelog",
+        "foot.roadmap":"Roadmap",
+        "foot.res":"Recursos",
+        "foot.blog":"Blog",
+        "foot.guides":"Guías",
+        "foot.api":"API Docs",
+        "foot.comm":"Comunidad",
+        "foot.legal":"Legal",
+        "foot.terms":"Términos",
+        "foot.privacy":"Privacidad",
+        "foot.cookies":"Cookies",
+        "foot.rights":"Todos los derechos reservados / All rights reserved.",
+        "foot.lang":"Idioma:"
+      },
+      en: {
+        "nav.features":"Features",
+        "nav.about":"About",
+        "nav.pricing":"Pricing",
+        "nav.faq":"FAQ",
+        "nav.contact":"Contact",
+        "nav.login":"Login",
+
+        "hero.h1a":"DOMINATE THE GAME.",
+        "hero.h1b":"NOT THE SPREADSHEETS.",
+        "hero.sub.es":"La primera IA diseñada por y para preparadores de físico-culturismo. Analiza, predice y escala tu coaching sin perder el toque humano.",
+        "hero.sub.en":"The first AI built by and for physique coaches. Analyze, predict, and scale your coaching without losing the human touch.",
+
+        "cta.start":"START NOW",
+        "cta.demo":"WATCH DEMO",
+
+        "stats.coaches":"COACHES",
+        "stats.athletes":"ATHLETES MANAGED",
+        "stats.data":"DATA POINTS ANALYZED",
+
+        "mock.command":"Command Center",
+        "mock.opt":"Optimal",
+        "mock.alerts":"Alerts",
+        "mock.green":"Optimal progress",
+        "mock.yellow":"Plateau detected",
+        "mock.red":"No check-in",
+        "mock.queue":"Queue",
+        "mock.now":"Now:",
+        "mock.today":"Today:",
+        "mock.week":"Week:",
+        "mock.checkin":"Weekly Check-In",
+        "mock.upload":"Upload photos",
+        "mock.metrics":"Metrics",
+        "mock.auto":"Auto",
+        "mock.ready":"Ready in 12s",
+
+        "problem.k":"THE PROBLEM",
+        "problem.h":"Excel doesn't scale. Data does.",
+        "problem.es":"Gestionar 30 atletas con Excel, WhatsApp y memoria fotográfica no escala. Pierdes horas en administración que deberías invertir en coaching estratégico.",
+        "problem.en":"Managing 30 athletes with Excel, WhatsApp, and photographic memory doesn't scale. You lose hours on admin that should go into strategic coaching.",
+
+        "features.k":"ELITE TOOLS",
+        "features.h1":"ELITE",
+        "features.h2":"TOOLS",
+        "features.lead":"Four systems designed to accelerate decisions and remove friction. Less admin. More coaching.",
+
+        "f1.t":"AI VISUAL ANALYSIS",
+        "f1.d":"Progress photos and technique videos analyzed automatically. Detect muscular imbalances and form errors in seconds.",
+        "f1.en":"AI VISUAL ANALYSIS — Progress photos and technique videos analyzed automatically. Detect muscular imbalances and form errors in seconds.",
+
+        "f2.t":"PERSISTENT MEMORY",
+        "f2.d":"Every athlete has an evolving profile. The AI learns which protocols work for their specific phenotype.",
+        "f2.en":"PERSISTENT MEMORY — Every athlete has an evolving profile. The AI learns which protocols work for their specific phenotype.",
+
+        "f3.t":"PLATEAU PREDICTION",
+        "f3.d":"Detect plateaus 2–3 weeks in advance. Get alerts with proven solutions based on historical data.",
+        "f3.en":"PLATEAU PREDICTION — Detect plateaus 2–3 weeks in advance. Get alerts with proven solutions based on historical data.",
+
+        "f4.t":"BATCH MANAGEMENT",
+        "f4.d":"Kanban dashboard to review 50 athletes in 20 minutes. Automatic prioritization by severity alerts.",
+        "f4.en":"BATCH MANAGEMENT — Kanban dashboard to review 50 athletes in 20 minutes. Automatic prioritization by severity alerts.",
+
+        "how.k":"HOW IT WORKS",
+        "how.h1":"FROM DATA",
+        "how.h2":"TO DECISION",
+        "how.lead":"A simple flow: import, connect, decide. The AI does the heavy lifting; you keep final control.",
+
+        "s1.t":"IMPORT",
+        "s1.d":"Upload your athlete roster. CSV, manual, or integration with existing apps.",
+        "s1.en":"Upload your athlete roster. CSV, manual, or integration with existing apps.",
+
+        "s2.t":"CONFIGURE",
+        "s2.d":"Create training and nutrition templates. The AI adapts them to each phenotype.",
+        "s2.en":"Create training and nutrition templates. The AI adapts them to each phenotype.",
+
+        "s3.t":"CONNECT",
+        "s3.d":"Your athletes use the mobile app to upload photos, measurements, and weekly videos.",
+        "s3.en":"Your athletes use the mobile app to upload photos, measurements, and weekly videos.",
+
+        "s4.t":"ANALYZE",
+        "s4.d":"The AI processes data, detects patterns, and generates personalized recommendations.",
+        "s4.en":"The AI processes data, detects patterns, and generates personalized recommendations.",
+
+        "s5.t":"DECIDE",
+        "s5.d":"Review, approve, or adjust with one click. You maintain final control always.",
+        "s5.en":"Review, approve, or adjust with one click. You maintain final control always.",
+
+        "s6.t":"SCALE",
+        "s6.d":"Your athletes receive automatically updated plans. You gain time.",
+        "s6.en":"Your athletes receive automatically updated plans. You gain time.",
+
+        "dash.k":"YOUR COMMAND CENTER",
+        "dash.h1":"COMMAND",
+        "dash.h2":"CENTER",
+        "dash.lead":"Visualize your entire roster at a glance. The AI prioritizes who needs your attention now.",
+
+        "filter.all":"All",
+        "filter.urgent":"Immediate attention",
+        "filter.next":"Upcoming competition",
+        "filter.new":"New",
+
+        "dash.roster":"Roster",
+        "dash.week":"Week",
+        "dash.ok":"Optimal",
+        "dash.plat":"Plateau",
+        "dash.noc":"No check-in",
+
+        "card.ok":"Optimal progress",
+        "card.warn":"Review",
+        "card.urgent":"Urgent",
+        "card.carlos":"Week 8/12 — Optimal progress",
+        "card.ana":"Plateau detected — Review volume",
+        "card.juan":"No check-in 10 days — Contact",
+        "dash.tip":"Tip: hover or tap a card to see the 4-week sparkline.",
+
+        "t.k":"TESTIMONIALS",
+        "t.h1":"SOCIAL",
+        "t.h2":"PROOF",
+        "t.lead":"Efficiency outcomes: more athletes, fewer hours, better decisions.",
+        "t1.role":"IFBB Pro Coach",
+        "t1.q":"“I went from managing 15 athletes in 40 hours weekly to 40 athletes in 20 hours. Early plateau detection is pure gold.”",
+        "t1.en":"“I went from managing 15 athletes in 40 hours weekly to 40 athletes in 20 hours. Early plateau detection is pure gold.”",
+        "t2.role":"Online Coach (50k followers)",
+        "t2.q":"“My athletes are more committed because they see me analyzing their data in real-time, not monthly.”",
+        "t2.en":"“My athletes are more committed because they see me analyzing their data in real-time, not monthly.”",
+        "t3.role":"Powerlifting Coach",
+        "t3.q":"“Cross-comparison between similar athletes helped me discover which protocols actually work.”",
+        "t3.en":"“Cross-comparison between similar athletes helped me discover which protocols actually work.”",
+
+        "p.k":"PRICING",
+        "p.h1":"PRICE",
+        "p.h2":"& SCALE",
+        "p.lead":"Choose the plan that matches your roster. Upgrade anytime.",
+        "p.m":"MONTHLY",
+        "p.y":"YEARLY -20%",
+        "p.pop":"MOST POPULAR",
+        "per.m":"/MO",
+        "per.y":"/YR",
+
+        "p1.t":"STARTER",
+        "p1.f1":"Up to 15 athletes",
+        "p1.f2":"Photo analysis",
+        "p1.f3":"Email support",
+        "p1.cta":"START",
+
+        "p2.t":"PRO",
+        "p2.f1":"Up to 60 athletes",
+        "p2.f2":"Video analysis",
+        "p2.f3":"Plateau prediction",
+        "p2.f4":"Cross-athlete comparison",
+        "p2.f5":"Priority support",
+        "p2.cta":"CHOOSE PRO",
+
+        "p3.t":"ELITE",
+        "p3.f1":"Unlimited athletes",
+        "p3.f2":"API access",
+        "p3.f3":"Optional white-label",
+        "p3.f4":"Personalized onboarding",
+        "p3.f5":"24/7 support",
+        "p3.cta":"CONTACT SALES",
+
+        "faq.k":"FREQUENTLY ASKED QUESTIONS",
+        "faq.h1":"FAQ",
+        "faq.h2":"CLEAR",
+        "faq.lead":"Straight answers. No fluff. You decide; AI accelerates.",
+
+        "q1.q":"Does AI replace the coach?",
+        "q1.a":"No. HGRAND amplifies your capacity. You make all final decisions; the AI handles heavy data analysis.",
+        "q2.q":"What about my athletes' privacy?",
+        "q2.a":"GDPR compliant with bank-grade encryption. Photos are processed and deleted; they never train general models.",
+        "q3.q":"Does it work for other sports or just bodybuilding?",
+        "q3.a":"Optimized for physique and strength sports. We’re expanding to other sports progressively.",
+        "q4.q":"Can I use my own training templates?",
+        "q4.a":"Yes. Upload your protocols and the AI adapts them to each athlete based on their response history.",
+        "q5.q":"What do my athletes need to use the app?",
+        "q5.a":"Just a smartphone. The mobile app is free for your athletes; you pay the coach subscription.",
+        "q6.q":"Is there a trial period?",
+        "q6.a":"14-day free trial with full PRO access. No credit card required.",
+
+        "cta.k":"FINAL CTA",
+        "cta.h1":"STOP ADMINISTERING.",
+        "cta.h2":"START DOMINATING.",
+        "cta.sub":"14 days free. No credit card required. Cancel anytime.",
+        "cta.btn":"START NOW",
+        "cta.fine":"By signing up, you agree to our Terms and Privacy Policy",
+        "msg.ok":"Thanks! We'll contact you soon",
+        "msg.err":"Invalid email",
+
+        "foot.tag":"Elite technology for elite coaches",
+        "foot.prod":"Product",
+        "foot.changelog":"Changelog",
+        "foot.roadmap":"Roadmap",
+        "foot.res":"Resources",
+        "foot.blog":"Blog",
+        "foot.guides":"Guides",
+        "foot.api":"API Docs",
+        "foot.comm":"Community",
+        "foot.legal":"Legal",
+        "foot.terms":"Terms",
+        "foot.privacy":"Privacy",
+        "foot.cookies":"Cookies",
+        "foot.rights":"All rights reserved.",
+        "foot.lang":"Language:"
+      }
+    };
+
+    function setLang(lang){
+      document.querySelectorAll('.lang').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        const v = dict[lang]?.[k];
+        if (v != null) el.textContent = v;
+      });
+      document.documentElement.lang = lang;
+      localStorage.setItem('hgrand_lang', lang);
+
+      // keep /per synced with billing mode
+      const mode = localStorage.getItem('hgrand_billing') || 'monthly';
+      const perKey = mode === 'monthly' ? 'per.m' : 'per.y';
+      const perText = dict[lang]?.[perKey] || (mode === 'monthly' ? '/MO' : '/YR');
+      const p1Per = document.getElementById('p1Per');
+      const p2Per = document.getElementById('p2Per');
+      const p3Per = document.getElementById('p3Per');
+      if (p1Per) p1Per.textContent = perText;
+      if (p2Per) p2Per.textContent = perText;
+      if (p3Per) p3Per.textContent = perText;
+    }
+
+    const savedLang = localStorage.getItem('hgrand_lang') || 'es';
+    setLang(savedLang);
+    document.querySelectorAll('.lang').forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.lang)));
+
+    // Reveal on scroll
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced){
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    }
+
+    // Count-up stats
+    function formatCount(val, decimals, suffix){
+      const n = decimals ? val.toFixed(decimals) : Math.round(val).toString();
+      return n + (suffix || "");
+    }
+    function animateCount(el){
+      const target = parseFloat(el.dataset.count || "0");
+      const decimals = parseInt(el.dataset.decimals || "0", 10);
+      const suffix = el.dataset.suffix || "";
+      const duration = 1200;
+      const start = performance.now();
+      const from = 0;
+      function tick(now){
+        const p = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const cur = from + (target - from) * eased;
+        el.textContent = formatCount(cur, decimals, suffix);
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    const statEls = document.querySelectorAll('[data-count]');
+    if (!prefersReduced){
+      const sio = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+          if (e.isIntersecting){
+            animateCount(e.target);
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.6 });
+      statEls.forEach(el => sio.observe(el));
+    } else {
+      statEls.forEach(el => el.textContent = formatCount(parseFloat(el.dataset.count||"0"), parseInt(el.dataset.decimals||"0",10), el.dataset.suffix||""));
+    }
+
+    // Timeline draw
+    const timeline = document.getElementById('timeline');
+    const draw = document.getElementById('tlDraw');
+    if (timeline && draw && !prefersReduced){
+      const tio = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting){
+            if (window.matchMedia('(max-width: 900px)').matches){
+              draw.style.height = '100%';
+            } else {
+              draw.style.width = '100%';
+            }
+          }
+        });
+      }, { threshold: 0.35 });
+      tio.observe(timeline);
+    } else if (draw){
+      draw.style.width = '100%';
+      draw.style.height = '100%';
+    }
+
+    // Dashboard interactions
+    document.querySelectorAll('.ath-card').forEach(card => {
+      const toggle = () => card.classList.toggle('expanded');
+      card.addEventListener('click', toggle);
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
+      card.addEventListener('mouseenter', () => card.classList.add('expanded'));
+      card.addEventListener('mouseleave', () => card.classList.remove('expanded'));
+    });
+
+    const filters = document.querySelectorAll('.filter');
+    const cards = document.querySelectorAll('.ath-card');
+    filters.forEach(f => {
+      const apply = () => {
+        filters.forEach(x => { x.classList.remove('active'); x.setAttribute('aria-selected','false'); });
+        f.classList.add('active'); f.setAttribute('aria-selected','true');
+        const key = f.dataset.filter;
+        cards.forEach(c => {
+          const sev = c.dataset.sev;
+          const show = key === 'all' ? true : (key === sev);
+          c.style.display = show ? '' : 'none';
+        });
+      };
+      f.addEventListener('click', apply);
+      f.addEventListener('keydown', (e) => { if (e.key==='Enter' || e.key===' ') { e.preventDefault(); apply(); } });
+    });
+
+    // Pricing toggle
+    const monthly = document.getElementById('billMonthly');
+    const yearly = document.getElementById('billYearly');
+    const prices = {
+      monthly: { p1:"$29", p2:"$79", p3:"$149", perKey:"per.m" },
+      yearly: { p1:"$279", p2:"$759", p3:"$1,429", perKey:"per.y" }
+    };
+    function setBilling(mode){
+      const m = (mode === 'monthly');
+      monthly.setAttribute('aria-pressed', String(m));
+      yearly.setAttribute('aria-pressed', String(!m));
+
+      const p1 = document.getElementById('p1Price');
+      const p2 = document.getElementById('p2Price');
+      const p3 = document.getElementById('p3Price');
+      const p1Per = document.getElementById('p1Per');
+      const p2Per = document.getElementById('p2Per');
+      const p3Per = document.getElementById('p3Per');
+
+      [p1,p2,p3,p1Per,p2Per,p3Per].forEach(el => el && el.classList.add('out'));
+      setTimeout(() => {
+        p1.textContent = prices[mode].p1;
+        p2.textContent = prices[mode].p2;
+        p3.textContent = prices[mode].p3;
+
+        const lang = document.documentElement.lang || 'es';
+        const perText = dict[lang]?.[prices[mode].perKey] || (mode === 'monthly' ? '/MO' : '/YR');
+        p1Per.textContent = perText;
+        p2Per.textContent = perText;
+        p3Per.textContent = perText;
+
+        [p1,p2,p3,p1Per,p2Per,p3Per].forEach(el => el && el.classList.remove('out'));
+      }, 220);
+
+      localStorage.setItem('hgrand_billing', mode);
+    }
+    const savedBilling = localStorage.getItem('hgrand_billing') || 'monthly';
+    setBilling(savedBilling);
+    monthly.addEventListener('click', () => setBilling('monthly'));
+    yearly.addEventListener('click', () => setBilling('yearly'));
+
+    // Form validation (simulated submit)
+    const form = document.getElementById('leadForm');
+    const email = document.getElementById('email');
+    const ok = document.getElementById('okMsg');
+    const err = document.getElementById('errMsg');
+
+    function show(el){ el.style.display='block'; el.style.opacity='1'; }
+    function hide(el){ el.style.display='none'; }
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      hide(ok); hide(err);
+      const v = (email.value || "").trim();
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      if (!valid){
+        show(err);
+        email.focus();
+        return;
+      }
+      show(ok);
+      form.reset();
+    });
+
+    // Ripple effect
+    function ripple(e){
+      const btn = e.currentTarget;
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const s = document.createElement('span');
+      const size = Math.max(rect.width, rect.height) * 1.2;
+      s.style.position = 'absolute';
+      s.style.left = (x - size/2) + 'px';
+      s.style.top = (y - size/2) + 'px';
+      s.style.width = s.style.height = size + 'px';
+      s.style.borderRadius = '999px';
+      s.style.background = 'rgba(255,255,255,.30)';
+      s.style.transform = 'scale(0)';
+      s.style.opacity = '1';
+      s.style.pointerEvents = 'none';
+      s.style.transition = 'transform 520ms var(--ease), opacity 520ms var(--ease)';
+      btn.appendChild(s);
+      requestAnimationFrame(() => { s.style.transform = 'scale(1)'; s.style.opacity = '0'; });
+      setTimeout(() => s.remove(), 560);
+    }
+    document.querySelectorAll('[data-ripple]').forEach(b => b.addEventListener('click', ripple));
+
+    // FAQ: single-open behavior
+    document.querySelectorAll('details').forEach(d => {
+      d.addEventListener('toggle', () => {
+        if (d.open){
+          document.querySelectorAll('details').forEach(o => { if (o !== d) o.open = false; });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
